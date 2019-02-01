@@ -2,19 +2,21 @@ FROM rocker/tidyverse
 
 WORKDIR /Desktop/testing
 
-RUN apt-get update -qq && apt-get install -y \
-    git-core \
-    libssk-dev \
+RUN apt-get update -qq && apt-get install -y \ 
+    git-core \ 
+    libssl-dev \ 
     libcurl4-gnutls-dev 
+
+COPY / /
+
+RUN chmod 700 /api/start.sh
 
 RUN R -e "install.packages('plumber')"
 RUN R -e "install.packages('ggplot2')"
 RUN R -e "install.packages('dplyr')"
 RUN R -e "install.packages('dygraphs')"
 
-COPY //
-
 EXPOSE 8000
 
-ENTRYPOINT["RScript", "plumb.R"]
-CMD["tes2.R"]
+ENTRYPOINT ["/User/user/Desktop/testing/api/start.sh"]
+CMD ["tes2.R"]
