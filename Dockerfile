@@ -10,6 +10,7 @@ RUN apt-get update -qq && apt-get install -y \
 RUN R -e "install.packages('plumber')"
 RUN R -e "install.packages('ggplot2')"
 RUN R -e "install.packages('dplyr')"
+RUN R -e "install.packages('dygraphs')"
 
 COPY //
 
